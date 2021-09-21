@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class turret : MonoBehaviour
 {
+    public Transform target;
     List<GameObject> Enemy = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -14,7 +15,7 @@ public class turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.LookAt(Vector3.zero);
     }
 
     private void OnTriggerEnter(Collider other)
