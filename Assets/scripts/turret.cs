@@ -15,7 +15,7 @@ public class turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(Vector3.zero);
+        transform.LookAt(Vector3.up);
     }
 
     private void OnTriggerEnter(Collider other)
