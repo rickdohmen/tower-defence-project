@@ -22,4 +22,14 @@ public class Bullet : MonoBehaviour
     {
         transform.position += Vector3.forward * speed * Time.deltaTime;
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+
+        
+    }
 }

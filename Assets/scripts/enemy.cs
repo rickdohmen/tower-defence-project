@@ -4,22 +4,62 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    private void Start()
+    public int health = 100;
+    public float speed = 1;
+
+    public int BulletDmg = 3;
+    
+
+    
+    // Start is called before the first frame update
+    void Start()
     {
 
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag.Equals("Bullet"))
+        if (health <= 0)
         {
-            Destroy(col.gameObject);
+
+            GameObject UI = GameObject.Find("GameManager");
+            UIManager uimanager = UI.GetComponent<UIManager>();
+            uimanager.currentkills += 1;
+
+
             Destroy(gameObject);
         }
+
+        transform.position += Vector3.back * speed * Time.deltaTime;
+
+        
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            //Debug.Log("Hit");
+            health = health - BulletDmg;
+        }
+
+        
+
+        if (other.gameObject.tag == "EndPoint")
+        {
+            GameObject UI = GameObject.Find("GameManager");
+            UIManager uimanager = UI.GetComponent<UIManager>();
+            uimanager.Currentgears -= 25;
+
+            Destroy(gameObject);
+
+        }
+    }
+
+}
+
+internal class UImanaager
+{
+
 }
