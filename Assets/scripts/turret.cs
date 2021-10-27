@@ -2,26 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyInRangeChecker))]
 public class turret : MonoBehaviour
 {
-    public Transform target;
-    List<GameObject> Enemy = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
-    {
+    [SerializeField] private float _damageAmount = 5;
+    [SerializeField] private float _shootCooldown = 0.5f;
+    [SerializeField] private Transform _turret;
 
+    private EnemyInRangeChecker _enemyInRangeChecker;
+    private float _nextShootTime = 0;
+
+    private void Start()
+    {
+        _enemyInRangeChecker = GetComponent<EnemyInRangeChecker>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
-        transform.LookAt(Enemy[0].transform, Vector3.left);
+        Enemy enemy = _enemyInRangeChecker.GetFirstEnemyInRange();
+        if(enemy != null)
+        {
+            _turret.LookAt(enemy.transform);
+            if (CanShoot())
+            {
+                _nextShootTime = Time.time + _shootCooldown;
+            }
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private bool CanShoot()
     {
-        Enemy.Add(other.gameObject);
-        Enemy.Remove(new GameObject());
+        return Time.time >= _nextShootTime;
     }
 }
