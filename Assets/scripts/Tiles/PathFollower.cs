@@ -6,14 +6,31 @@ public class PathFollower : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _arrivalThresholds;
+     private float _origanlspeed;
 
     private Path _path;
     private WayPoints _currentWaypoint;
 
+    
+    public void SlowedEnemy(bool GetSlowed)
+    {
+        if (GetSlowed == true)
+        {
+            _speed = _speed /  1.5f;
+        }
+        else
+        {
+            _speed = _origanlspeed;
+        }
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        _origanlspeed = _speed;
         SetupPath();
+
     }
 
     // Update is called once per frame

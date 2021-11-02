@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Enemy_Health : Heath_Component
 {
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-        }
-    }
+    public EnemyInRangeChecker rangeChecker;
+   
 
     protected override void HandleTakeDamage()
     {
@@ -25,4 +20,8 @@ public class Enemy_Health : Heath_Component
         Destroy(gameObject);
     }
 
+    public override void TakeDamage(float amount)
+    {
+        base.TakeDamage(amount);
+    }
 }

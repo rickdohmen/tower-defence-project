@@ -7,6 +7,17 @@ public class EnemyInRangeChecker : MonoBehaviour
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask _layer;
 
+
+    private void Update()
+    {
+        Enemy _tempEnemy = GetFirstEnemyInRange();
+
+        if (_tempEnemy)
+        {
+            _tempEnemy.TakeDamage();
+        }
+    }
+
     public Enemy GetFirstEnemyInRange()
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, _radius, _layer);

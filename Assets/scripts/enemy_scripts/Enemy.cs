@@ -6,10 +6,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Heath_Component _healthComponent;
+    private Enemy_Health _Enemyhealth;
 
-    private void start()
+    private void Awake()
     {
         _healthComponent = GetComponent<Heath_Component>();
+        _Enemyhealth = GetComponent<Enemy_Health>();
     }
     // Start is called before the first frame update
    
@@ -21,5 +23,8 @@ public class Enemy : MonoBehaviour
     }
     
         
-    
+    public void TakeDamage()
+    {
+        _Enemyhealth.TakeDamage(5);
+    }
 }

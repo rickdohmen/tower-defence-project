@@ -26,6 +26,7 @@ public class turret : MonoBehaviour
             if (CanShoot())
             {
                 _nextShootTime = Time.time + _shootCooldown;
+                print("ShootEmey");
             }
         }
     }

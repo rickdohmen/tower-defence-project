@@ -53,7 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 304139086723903932, guid: 28538f778fca1b84b93fb94bad03af36, type: 3}
       propertyPath: m_Name
-      value: default_tile
+      value: bulding_tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 304139086723903932, guid: 28538f778fca1b84b93fb94bad03af36, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28538f778fca1b84b93fb94bad03af36, type: 3}
